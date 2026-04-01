@@ -1,0 +1,95 @@
+cd ~
+gpg --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+curl -sSL https://get.rvm.io | bash -s
+Adds this line to your .bash_profile
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+Adds this line to your .bashrc file:
+export PATH="$PATH:$HOME/.rvm/bin"
+unset GEM_HOME
+. ~/.rvm/scripts/rvm
+close terminal
+open terminal
+rvm autolibs disable
+rvm --version
+rvm list known
+rvm pkg install openssl
+Cek versi sistem (Global):
+openssl version
+Cek versi spesifik di folder RVM:
+$HOME/.rvm/usr/bin/openssl version
+Cek Library dan Header
+ls $HOME/.rvm/usr/include/openssl
+ls $HOME/.rvm/usr/lib | grep ssl
+Jika OpenSSL Belum Ada
+rvm pkg install openssl
+Tips Verifikasi Setelah Ruby Terinstal
+Setelah kamu berhasil menjalankan rvm install 2.3.8 ..., kamu bisa memastikan Ruby tersebut benar-benar mengenali OpenSSL dengan perintah ini:
+ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'
+export CFLAGS="-Wno-error=implicit-function-declaration"
+rvm install 2.3.8 --with-openssl-dir=$HOME/.rvm/usr
+ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION' jika ke system uninstall rvm ruby 2.3.8
+rvm remove 2.3.8
+rvm pkg install openssl
+# 1. Siapkan environment agar compiler tidak galak
+export CFLAGS="-Wno-error=implicit-function-declaration"
+export LDFLAGS="-L$HOME/.rvm/usr/lib"
+export CPPFLAGS="-I$HOME/.rvm/usr/include"
+
+# 2. Jalankan instalasi dengan semua flag "pemaksa"
+rvm install 2.3.8 \
+  --with-openssl-dir=$HOME/.rvm/usr \
+  --with-openssl-lib=$HOME/.rvm/usr/lib \
+  --with-openssl-include=$HOME/.rvm/usr/include
+
+coba cek ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'
+
+setelah di install kembali. buka terminal baru.
+. ~/.rvm/scripts/rvm
+rvm use 2.3.8 --default
+ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'
+OpenSSL 1.0.1i 6 Aug 2014
+
+cek lagi 
+ruby -ropen-uri -e 'open("https://google.com")'
+ls -l /etc/ssl/certs/ca-certificates.crt
+masukan
+eki@tux ~ $ export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+eki@tux ~ $ export SSL_CERT_DIR=/etc/ssl/certs
+eki@tux ~ $ export SSL_CERT_DIR=/etc/ssl/
+ruby -ropen-uri -e 'open("https://google.com")'
+jika kosong berarti terkoneksi
+lanjut
+
+gem install   webrick:1.7.0   bundler:2.3.27   public_suffix:4.0.7   unicode-display_width:2.3.0   rouge:3.30   mercenary:0.3.6   ffi:1.15.5   rb-inotify:0.10.1   listen:3.5.0   jekyll:3.7.4   rake:12.3.3   sassc:2.4.0   redcarpet:3.6.0   jekyll-gist:1.5.0   jekyll-sitemap:1.2.0   jekyll-seo-tag:2.5.0   kramdown-parser-gfm:1.1.0
+
+git clone https://github.com/poole/poole.git
+bundler -v
+# Cek versi bundler yang aktif sekarang
+bundler -v
+
+# Jika bukan 2.3.27, jalankan ini untuk menginstalnya sebagai default di lingkungan RVM tersebut
+gem install bundler:2.3.27 --default
+
+bundle _2.3.27_ install
+bundle _2.3.27_ exec jekyll serve
+bundle _2.3.27_ exec jekyll serve
+
+
+
+
+
+Tips Setelah Instalasi Berhasil
+Setelah semua terinstal, jangan lupa untuk mendaftarkan plugin tersebut di dalam file _config.yml proyek kamu agar Jekyll mengenali fiturnya:
+
+YAML
+
+# Di dalam _config.yml
+plugins:
+  - jekyll-gist
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-gist
+
+
+
+
